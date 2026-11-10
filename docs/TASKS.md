@@ -3,10 +3,13 @@
 - [x] Java/Spring inquiry API and PostgreSQL schema
 - [x] Optional OpenAI classification
 - [x] Local Docker Compose configuration
+- [x] Replace shared API key with Spring Security Basic authentication (development only)
+- [x] Add tenant_id DB filter to all inquiry queries (single configured tenant)
+- [x] Introduce Flyway V1 migration (for fresh DB only)
 - [ ] Build and integration tests in running Docker
-- [ ] Spring Security login and RBAC
-- [ ] Multi-tenant isolation
-- [ ] Flyway migrations and DB tests
+- [ ] Secure production login (sessions, CSRF, logout, rate limiting)
+- [ ] Multiple tenant accounts, authenticated tenant mapping, cross-tenant integration tests
+- [ ] Upgrade existing databases safely from legacy schema before deployment
 - [ ] Redis job queue, email notification
 - [ ] Anti-spam and request rate limits
 - [ ] Privacy consent, retention, deletion
