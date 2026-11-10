@@ -1,19 +1,20 @@
 # TASKS
 - [x] Initial React inquiry and admin demo
-- [x] Java/Spring inquiry API, PostgreSQL and AI classification
+- [x] Spring Boot API, PostgreSQL, optional AI classification
 - [x] Local Docker Compose configuration
-- [x] Replace shared API key with Spring Security Basic authentication (development only)
-- [x] Add tenant_id DB filter to all inquiry queries (single configured tenant)
-- [x] Introduce Flyway V1 migration (fresh DB)
-- [x] Local frontend build and backend package validation (Java 17 test override; target Java 21)
-- [x] Add backend unit tests and GitHub Actions CI definitions
-- [ ] Verify GitHub Actions Java 21 backend and frontend jobs
-- [ ] Docker end-to-end integration on running engine
-- [ ] Secure production sessions/login, CSRF, logout, throttling
-- [ ] Multiple tenant accounts, authenticated tenant mapping, cross-tenant integration tests
+- [x] Replace shared API key with Spring Security Basic authentication (local development only)
+- [x] Add tenant_id filter to all inquiry SQL statements (one configured tenant)
+- [x] Introduce Flyway V1 migration for a fresh database
+- [x] React/Vite build verified locally
+- [x] Spring Boot backend package verified locally (Java 17 compatibility override; production target Java 21)
+- [x] 5 Java unit tests passed locally (2026-11-10)
+- [x] GitHub Actions CI workflow committed
+- [ ] GitHub Actions CI passing: first run failed before jobs received a runner (both jobs had zero steps); check GitHub Actions account/repository runner and billing settings
+- [ ] Test Java 21 build and full Docker integration
+- [ ] Secure production login and CSRF protection
+- [ ] Multiple tenant accounts, authenticated mapping and cross-tenant integration tests
 - [ ] Safely migrate existing legacy DB
-- [ ] Redis job queue, email notifications and retry
-- [ ] Anti-spam and intake rate limits
-- [ ] Privacy consent, retention, deletion and third-party AI disclosure
-- [ ] Observability, HTTPS, backup/restore, production deployment
+- [ ] Redis job queue and email notification retries
+- [ ] Anti-spam/rate limits and privacy consent/retention/deletion
+- [ ] Monitoring, HTTPS, backup/restore and production deployment
 - [ ] Pilot customer and paid conversion
