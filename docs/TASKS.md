@@ -1,20 +1,75 @@
-# TASKS
-- [x] Initial React inquiry and admin demo
-- [x] Spring Boot API, PostgreSQL, optional AI classification
-- [x] Local Docker Compose configuration
-- [x] Replace shared API key with Spring Security Basic authentication (local development only)
-- [x] Add tenant_id filter to all inquiry SQL statements (one configured tenant)
-- [x] Introduce Flyway V1 migration for a fresh database
-- [x] React/Vite build verified locally
-- [x] Spring Boot backend package verified locally (Java 17 compatibility override; production target Java 21)
-- [x] 5 Java unit tests passed locally (2026-11-10)
-- [x] GitHub Actions CI workflow committed
-- [ ] GitHub Actions CI passing: first run failed before jobs received a runner (both jobs had zero steps); check GitHub Actions account/repository runner and billing settings
-- [ ] Test Java 21 build and full Docker integration
-- [ ] Secure production login and CSRF protection
-- [ ] Multiple tenant accounts, authenticated mapping and cross-tenant integration tests
-- [ ] Safely migrate existing legacy DB
-- [ ] Redis job queue and email notification retries
-- [ ] Anti-spam/rate limits and privacy consent/retention/deletion
-- [ ] Monitoring, HTTPS, backup/restore and production deployment
-- [ ] Pilot customer and paid conversion
+# CORGLAB Desk — Development Plan & Tasks
+- PRD: [docs/PRD.md](PRD.md) (v1.0, Q1~Q8)
+- 방식: Codex 단독 + AGENTS.md / PRD / TASKS / 자동 테스트. BMAD 미사용
+- 완료 기준: 코드/테스트/실제 동작을 확인해야 [x], 문서나 계획만 있으면 [ ] 유지
+- 날짜/기간은 확정하지 않음. 단계별 출고 기준으로 관리.
+
+## 검증된 현재 상태 (2026-11-10)
+- [x] Spring Boot 기본 문의 등록/조회/상태 API, PostgreSQL 스키마, 선택적 AI 분류
+- [x] React 초기 문의·관리 화면
+- [x] Flyway V1(신규 DB용) 및 구성 tenant_id 필터(단일 조직)
+- [x] Spring Security HTTP Basic(로컬 개발 전용)
+- [x] Docker Compose 설정 작성
+- [x] React/Vite 로컬 프로덕션 빌드
+- [x] Spring Boot 패키징 로컬 성공(Java 17 호환값으로 검사, 운영 기준 Java 21)
+- [x] 백엔드 로컬 단위 테스트 5개 통과
+- [x] GitHub Actions 워크플로 작성
+- [ ] GitHub Actions 성공 (초기 실행이 runner 배정 전 실패, 원인 확인 필요)
+- [ ] Java 21 + Docker 통합 테스트 검증
+
+## M0. 기반 안정화 / 현재 최우선
+- [ ] GitHub Actions 실행기·계정 설정 점검, backend/frontend CI 통과
+- [ ] Java 21 빌드, DB 연결, Flyway 실행, API 응답 통합 테스트
+- [ ] 초기 DB와 기존 스키마 데이터 모두 고려한 안전한 마이그레이션 정리
+- [ ] 테스트 격리 및 도커 구동/종료/재시작 절차 문서화
+**Exit:** 동일 저장소에서 Java21/Compose 기동·API+DB 검증 및 CI 통과.
+
+## M1. 멀티테넌트와 로그인 / 상용화 필수
+- [ ] organizations, users, memberships, invitations 스키마 및 제약조건
+- [ ] 가입·로그인·로그아웃·비밀번호 재설정·초대 수락
+- [ ] ADMIN/STAFF 권한 및 서버 측 조직 소속 검사
+- [ ] 모든 문의/관리/발송 기능의 tenant scope를 로그인 계정으로 결정
+- [ ] 테넌트 간 조회/수정/승인 차단 통합 테스트
+- [ ] 개발용 Basic 인증 제거, 운영용 인증/CSRF/세션 정책
+**Exit:** A사 관리자/직원이 B사 데이터 접근 불가, 직원 초대 정상 동작.
+
+## M2. 고객사의 실제 홈페이지에 설치
+- [ ] 기업 도메인 등록·검증 및 위젯 사이트 식별
+- [ ] 홈페이지 삽입 스크립트·브랜드 설정·기업 전용 문의 페이지
+- [ ] 방문자 문의 폼/유효성/개인정보 필수 동의
+- [ ] Rate limit/스팸 방어/중복 등록 최소화
+- [ ] 문의 목록·상세·상태·담당자·검색·페이지네이션
+- [ ] 무료 월 30건 집계(초과 처리 정책 확정 뒤 적용)
+**Exit:** 서로 다른 두 기업 사이트에서 각각 올바른 계정으로 문의 접수.
+
+## M3. AI와 이메일
+- [ ] AI 분류·요약·답변 초안 생성 및 모델/비용 설정
+- [ ] 비동기 작업 큐(예: Redis + worker/outbox), 실패 시 재시도
+- [ ] 관리자 화면 알림 및 이메일 신규 문의 알림
+- [ ] 직원 답변 편집/승인(자동 발송 절대 금지)
+- [ ] 고객 이메일 발송/중복 방지/실패 이력 및 재시도
+- [ ] 오류·시간초과·동시 처리 시나리오 테스트
+**Exit:** 접수→초안→직원 승인→고객 이메일 발송/기록 끝까지 검증.
+
+## M4. 운영·요금제·파일럿
+- [ ] Free/Pro 권한·사용량, 미결정 요금/과금 정책 확정 및 구현
+- [ ] HTTPS, 운영 비밀값 관리, 모니터링, 로그/알림
+- [ ] DB 백업·복구 실제 테스트, 장애 복구 지침
+- [ ] VPS Docker 배포 및 CI/CD (배포 서버/도메인 미확정)
+- [ ] 개인정보 안내·보존/삭제 기능 및 수집/AI 처리 약관
+- [ ] 외부 기업 파일럿 1곳 이상 실사용 테스트
+**Exit:** 상용 보안/법무/가용성 점검 후 유료 고객을 받을 수 있는 상태.
+
+## 출시 제외/향후 후보
+- [ ] AI 실시간 상담 및 담당자 연결
+- [ ] 견적/계약 CRM 확장
+- [ ] 카카오/Slack/Discord 등 추가 알림 채널
+- [ ] API 직접 연동·팀별 세부 권한
+
+## 출시 전 확인할 미결정 정책
+- [ ] 유료 29,000원 가안의 포함 기능·직원/AI 한도 및 세금 정책
+- [ ] 무료 30건 초과 처리 및 월 집계 방식
+- [ ] 결제 처리(PG 또는 수동), 발신 메일 서비스 선정
+- [ ] 운영 VPS·도메인·비용 상한
+- [ ] 개인정보 보존/삭제 기간, 고지/동의 문구
+- [ ] 위젯 UI·첨부/폼 설정·승인권한 세부 규칙
