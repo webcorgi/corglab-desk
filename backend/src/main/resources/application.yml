@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/desk}
+    username: ${POSTGRES_USER:desk}
+    password: ${POSTGRES_PASSWORD:}
+  sql:
+    init:
+      mode: always
+server:
+  port: 8080
+app:
+  admin-key: ${ADMIN_API_KEY:}
+  openai-key: ${OPENAI_API_KEY:}
+  openai-model: ${OPENAI_MODEL:gpt-4.1-nano}

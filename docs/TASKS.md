@@ -1,0 +1,14 @@
+# TASKS
+- [x] Initial React form and admin demo
+- [x] Java/Spring inquiry API and PostgreSQL schema
+- [x] Optional OpenAI classification
+- [x] Local Docker Compose configuration
+- [ ] Build and integration tests in running Docker
+- [ ] Spring Security login and RBAC
+- [ ] Multi-tenant isolation
+- [ ] Flyway migrations and DB tests
+- [ ] Redis job queue, email notification
+- [ ] Anti-spam and request rate limits
+- [ ] Privacy consent, retention, deletion
+- [ ] CI/CD, monitoring, HTTPS, backup/restore
+- [ ] Pilot customer and paid conversion
