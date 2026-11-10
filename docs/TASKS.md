@@ -1,17 +1,19 @@
 # TASKS
-- [x] Initial React form and admin demo
-- [x] Java/Spring inquiry API and PostgreSQL schema
-- [x] Optional OpenAI classification
+- [x] Initial React inquiry and admin demo
+- [x] Java/Spring inquiry API, PostgreSQL and AI classification
 - [x] Local Docker Compose configuration
 - [x] Replace shared API key with Spring Security Basic authentication (development only)
 - [x] Add tenant_id DB filter to all inquiry queries (single configured tenant)
-- [x] Introduce Flyway V1 migration (for fresh DB only)
-- [ ] Build and integration tests in running Docker
-- [ ] Secure production login (sessions, CSRF, logout, rate limiting)
+- [x] Introduce Flyway V1 migration (fresh DB)
+- [x] Local frontend build and backend package validation (Java 17 test override; target Java 21)
+- [x] Add backend unit tests and GitHub Actions CI definitions
+- [ ] Verify GitHub Actions Java 21 backend and frontend jobs
+- [ ] Docker end-to-end integration on running engine
+- [ ] Secure production sessions/login, CSRF, logout, throttling
 - [ ] Multiple tenant accounts, authenticated tenant mapping, cross-tenant integration tests
-- [ ] Upgrade existing databases safely from legacy schema before deployment
-- [ ] Redis job queue, email notification
-- [ ] Anti-spam and request rate limits
-- [ ] Privacy consent, retention, deletion
-- [ ] CI/CD, monitoring, HTTPS, backup/restore
+- [ ] Safely migrate existing legacy DB
+- [ ] Redis job queue, email notifications and retry
+- [ ] Anti-spam and intake rate limits
+- [ ] Privacy consent, retention, deletion and third-party AI disclosure
+- [ ] Observability, HTTPS, backup/restore, production deployment
 - [ ] Pilot customer and paid conversion
